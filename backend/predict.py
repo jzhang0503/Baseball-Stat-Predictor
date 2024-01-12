@@ -7,7 +7,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error 
 
 
-def predict_avg(min_games: int, max_games: int, player: str):
+def predict_avg(player: str, min_games =1, max_games =162):
     data = pd.read_csv('./data/' + player)
     #Dropping non numerical data (Gcar, Date, Tm, '', Opp, Rslt, Inngs, Pos)
     data.drop(data.columns[5], axis=1, inplace=True)
@@ -49,4 +49,4 @@ def predict_avg(min_games: int, max_games: int, player: str):
     # plt.plot(data['Rk'].tail(41), predictions)
     # plt.show()
 
-    return str(sum(Y)/len(Y)), mean_squared_error(y_test, predictions), mean_absolute_error(y_test, predictions)
+    return sum(Y)/len(Y), mean_squared_error(y_test, predictions), mean_absolute_error(y_test, predictions)
